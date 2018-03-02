@@ -9,6 +9,9 @@ RUN apk add --no-cache curl git bash
 RUN apk add --no-cache --virtual .phpize-deps $PHPIZE_DEPS
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 
+# Install php_mysql extention
+RUN docker-php-ext-install pdo_mysql
+
 # Install nodejs
 RUN apk add --no-cache make gcc g++ python linux-headers binutils-gold gnupg libstdc++ && \
   for server in pgp.mit.edu keyserver.pgp.com ha.pool.sks-keyservers.net; do \
